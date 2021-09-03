@@ -24,6 +24,7 @@ class CommandsMap:
 				p = path.join(Settings.GAMEDIR, f"saves/{kwargs['path']}")
 				if not path.isdir(p):
 					raise NotADirectoryError
+				ConsoleHelper.Globals.game.world.unload_all()
 				ConsoleHelper.Globals.game.world = World(p, ConsoleHelper.Globals.game)
 				ConsoleHelper.Globals.game.world.load()
 			except KeyError as key:
@@ -31,6 +32,7 @@ class CommandsMap:
 					p = path.join(Settings.GAMEDIR, f"saves/{args[0]}")
 					if not path.isdir(p):
 						raise NotADirectoryError
+					ConsoleHelper.Globals.game.world.unload_all()
 					ConsoleHelper.Globals.game.world = World(p, ConsoleHelper.Globals.game)
 					ConsoleHelper.Globals.game.world.load()
 				except IndexError:
@@ -48,6 +50,7 @@ class CommandsMap:
 															 f"saves/{ConsoleHelper.Globals.game.world.name}/{pa}"))
 						except FileExistsError:
 							p = path.join(Settings.GAMEDIR, f"saves/{ConsoleHelper.Globals.game.world.name}/{args[0]}")
+						ConsoleHelper.Globals.game.world.unload_all()
 						ConsoleHelper.Globals.game.world = World(p, ConsoleHelper.Globals.game)
 						ConsoleHelper.Globals.game.world.load()
 					except NotADirectoryError:
@@ -68,6 +71,7 @@ class CommandsMap:
 											path.join(Settings.GAMEDIR, f"saves/{ConsoleHelper.Globals.game.world.name}/{pa}"))
 					except FileExistsError:
 						p = path.join(Settings.GAMEDIR, f"saves/{ConsoleHelper.Globals.game.world.name}/{kwargs['path']}")
+					ConsoleHelper.Globals.game.world.unload_all()
 					ConsoleHelper.Globals.game.world = World(p, ConsoleHelper.Globals.game)
 					ConsoleHelper.Globals.game.world.load()
 				except NotADirectoryError:
